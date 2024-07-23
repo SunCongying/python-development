@@ -19,7 +19,7 @@ decimal是货币类型，只要是钱就使用该类型
 class BookInfo(models.Model): # 表对应的类，需要先注册，再进行模型迁移才能完成建表
     # 创建字段
     name = models.CharField(max_length=10,unique=True)
-    pub_data = models.DateField(null=True)
+    pub_date = models.DateField(null=True)
     readcount = models.IntegerField(default=0)
     commentcount = models.IntegerField(default=0)
     is_delete = models.BooleanField(default=False)
