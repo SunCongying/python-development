@@ -110,3 +110,37 @@ BookInfo.objects.aggregate(Sum('readcount'))
 ######################### 排序 ################
 BookInfo.objects.all().order_by('readcount')  #升序  单下划线!!!
 BookInfo.objects.all().order_by('-readcount')  #降序
+
+###!!!!!!!!!重点!!!!
+################## 级联查询 (两张表) ##########################
+# 书籍表和人物表,通过人物表中的book链接
+# 查询书籍为1的所有人物信息
+book = BookInfo.objects.get(id = 1)  # 编号为1的书籍
+book.peopleinfo_set.all()
+
+# 查询人物为1的书籍信息
+from book.models import PeopleInfo
+person = PeopleInfo.objects.get(id=1)  # 得到的也是一个类的实例,所以有.book属性
+person.book.name   ## 直接调用.book 就实现了从人物表到书籍表的连接,获得了人物表对应的书籍表的实例
+person.book.readcount
+
+################## 关联查询的过滤查询 (两张表) ##########################
+
+# 语法:  模型类名.object.filter(关联模型小写__字段名__运算符=值)
+# 查询人物为郭靖的图书
+BookInfo.objects.filter(peopleinfo__name__exact='郭靖')
+BookInfo.objects.filter(peopleinfo__name='郭靖')  # 和上面的语句效果一样
+
+# 查询书中人物的描述中包含"八"的图书
+BookInfo.objects.filter(peopleinfo__description__contains='八')
+
+# 查询书名为'天龙八部'的所有人物
+PeopleInfo.objects.filter(book__name='天龙八部')
+# 查询图书阅读量大于30的所有人物
+PeopleInfo.objects.filter(book__readcount__gt=30)
+
+# 下面这两行代码的逻辑是先找出阅读量大于30的书籍,然后再找出书籍关联的所有人物
+# 但是该方法会报错,因为这里的book是一个QuerySet,而不是一个单一的BookInfo对象,
+# book.peopleinfo_set.all()只能得到单一的BookInfo对象的关联结果
+# book = BookInfo.objects.filter(book__readcount__gt=30)
+# book.peopleinfo_set.all()

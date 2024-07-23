@@ -23,6 +23,10 @@ class BookInfo(models.Model): # 表对应的类，需要先注册，再进行模
     readcount = models.IntegerField(default=0)
     commentcount = models.IntegerField(default=0)
     is_delete = models.BooleanField(default=False)
+
+    # 1对多的模型关系中,系统自动添加一个   关联模型类名小写_set    字段
+    # peopleinfo_set =[peopleInfo,peopleInfo,peopleInfo,...]
+
     # 修改表的名称
     class Meta:
         db_table = 'bookinfo'
@@ -46,7 +50,10 @@ class PeopleInfo(models.Model):
     is_delete = models.BooleanField(default=False)
 
     # 外键约束,系统会自动为外键添加 _id,可以直接命名名字：book
-    book = models.ForeignKey(BookInfo,on_delete=models.CASCADE)
+    book = models.ForeignKey(BookInfo,on_delete=models.CASCADE) #book = BookInfo() 是一个实例
+    # ForeignKey字段在数据库中会被存储为一个包含 目标模型主键 的字段，默认名称是<外键字段名>_id。
+    # PeopleInfo模型中的book字段在数据库中被存储为book_id，它引用BookInfo模型的主键字段（通常是id字段）。
+
     # BookInfo：外键对应的类名
     # on_delete 表示主表删除数据时，外键引用的数据该如何处理
     # 主表 从表
