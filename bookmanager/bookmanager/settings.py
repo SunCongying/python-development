@@ -85,8 +85,18 @@ WSGI_APPLICATION = 'bookmanager.wsgi.application'
 # sqlite3也是一个关系型数据库，主要用于移动端，了解即可
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # sqlite3数据库
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+
+        # mysql数据库
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST':'127.0.0.1',
+        'PORT':'3306',
+        'USER':'root',
+        'PASSWORD':'572622',
+        'NAME':'py3_scy',
+
     }
 }
 
