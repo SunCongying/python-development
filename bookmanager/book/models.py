@@ -10,7 +10,9 @@ from django.db import models
 class BookInfo(models.Model): # 表对应的类，需要先注册，再进行模型迁移才能完成建表
     # 创建字段
     name = models.CharField(max_length=10)
-
+    # 重写str方法，使得显示书籍名称
+    def __str__(self):
+        return self.name  # 该表的内容是id，name，所以这里返回self.name
 class PeopleInfo(models.Model):
     name=models.CharField(max_length=10)
     gender=models.BooleanField()
