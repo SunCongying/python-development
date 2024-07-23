@@ -101,3 +101,12 @@ from django.db.models import Q
 BookInfo.objects.filter(Q(readcount__gt=20)|Q(id__lt=3))
 
 # Q还可以实现 非 语法    BookInfo.objects.filter(~Q(属性名__运算符 = 值))
+
+######################## 聚合函数 #################################
+from django.db.models import Sum,Max,Min,Avg,Count
+# 语法:  .objects.aggregate(函数('字段名'))
+BookInfo.objects.aggregate(Sum('readcount'))
+
+######################### 排序 ################
+BookInfo.objects.all().order_by('readcount')  #升序  单下划线!!!
+BookInfo.objects.all().order_by('-readcount')  #降序
