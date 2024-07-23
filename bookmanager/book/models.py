@@ -28,7 +28,7 @@ class BookInfo(models.Model): # 表对应的类，需要先注册，再进行模
         db_table = 'bookinfo'
         verbose_name = '书籍管理' # admin站点使用的
 
-    # 重写str方法，使得显示书籍名称
+    # 重写str方法，使得显示书籍名称，不添加的话默认显示的是  类名+object
     def __str__(self):
         return self.name  # 该表的内容是id，name，所以这里返回self.name
 ####人物表 ###
@@ -58,6 +58,10 @@ class PeopleInfo(models.Model):
 
     class Meta:
         db_table = 'peopleinfo'
+
+    # 重写str方法，使得显示人物名称
+    def __str__(self):
+        return self.name  # 该表的内容是id，name，所以这里返回self.name
 
 # 每次修改了模型文件中的类，就要生成一个迁移文件。
 
