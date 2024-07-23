@@ -14,12 +14,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from book.views import index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
     # path(路由，视图函数名)
-    path('index/',index),
+    # path('index/',index), # 添加单个路由时
+
+    # 将别的子应用的urls导入时：
+    path('blog/',include('book.urls'))
 ]
