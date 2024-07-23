@@ -25,6 +25,7 @@ SECRET_KEY = 'av)mx+bxie^5i_e5_d0^0zb%jhc3eef%p40kt1+u0-10+1gp$s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# 默认本机 127.0.0.1
 ALLOWED_HOSTS = []
 
 
@@ -75,6 +76,7 @@ WSGI_APPLICATION = 'bookmanager.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+# sqlite3也是一个关系型数据库，主要用于移动端，了解即可
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
