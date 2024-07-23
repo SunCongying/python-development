@@ -27,7 +27,7 @@ SECRET_KEY = 'av)mx+bxie^5i_e5_d0^0zb%jhc3eef%p40kt1+u0-10+1gp$s'
 # 在开发时开启debug模式可以看到更多的信息，
 # 当程序上线后就关闭debug，因为debug会消耗一些资源
 # 关闭debug需要设置ALLOWED_HOSTS
-DEBUG = False
+DEBUG = True
 
 # 允许以什么形式访问我们的项目，*的意思是可以使用ip，也可以使用127，一般不用127
 # 默认本机 127.0.0.1
@@ -127,4 +127,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/'
+# 访问静态资源的路由
+STATIC_URL = '/static/'  # 可以自定义路由
+
+# 静态资源的位置
+STATICFILES_DIRS = [
+os.path.join(BASE_DIR, 'static'),
+]
