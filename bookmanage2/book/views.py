@@ -15,7 +15,17 @@ def create_book(request):
 
 def shop(request,city_id,shop_id):
 
-    print(city_id,shop_id)
+    ###### 传递参数的四种方式 ###########
+    # print(city_id,shop_id)   # 1.获取URL路径中的参数
+    query_params=request.GET  # 2.查询字符串  <QueryDict: {'order': ['readcount']}>
+    print(query_params)
+    order1 = query_params.get('order')  # 获取字典的值，如果字典有多个值，只会获取最后一个
+    order2 = query_params.getlist('order')  # 如果字典有多个值，会获取所有值，以列表的形式返回
+
+    # order = query_params['order']  # 获取字典的值
+    print(order1)
+    print(order2)
+
 
     return HttpResponse('贝贝的小饭店')
 
