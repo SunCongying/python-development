@@ -139,7 +139,7 @@ def set_cookie(request):
     response.set_cookie('name',username,max_age=60*60)  # 这里给出的是键，值参数
     response.set_cookie('pwd',password)
 
-    response.delete_cookie('name')
+    # response.delete_cookie('name')
     # max_age 是一个秒数
     return response
 
